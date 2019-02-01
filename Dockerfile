@@ -14,8 +14,8 @@ RUN mvn package -s settings.xml -Denv=win64
 
 FROM alpine
 MAINTAINER Grégory Van den Borre <vandenborre.gregory@hotmail.fr>
-WORKDIR /app
+WORKDIR /yildiz-online
 RUN mkdir /dist
-COPY --from=build /app/target/media/ /app/media/
-COPY --from=build /app/target/game-client.jar /app/game-client.jar
-COPY --from=build /app/target/yildiz-online.exe /app/yildiz-online.exe
+COPY --from=build /app/target/media/ /yildiz-online/media/
+COPY --from=build /app/target/game-client.jar /yildiz-online/game-client.jar
+COPY --from=build /app/target/yildiz-online.exe /yildiz-online/yildiz-online.exe
