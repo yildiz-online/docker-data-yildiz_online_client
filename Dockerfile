@@ -19,6 +19,3 @@ RUN mkdir /dist
 COPY --from=build /app/target/media/ /app/media/
 COPY --from=build /app/target/game-client.jar /app/game-client.jar
 COPY --from=build /app/target/yildiz-online.exe /app/yildiz-online.exe
-CMD ["cp -r /app /dist"]
-
-
