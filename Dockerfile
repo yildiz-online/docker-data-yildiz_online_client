@@ -19,3 +19,4 @@ RUN mkdir /dist
 COPY --from=build /app/target/media/ /yildiz-online/media/
 COPY --from=build /app/target/game-client.jar /yildiz-online/game-client.jar
 COPY --from=build /app/target/yildiz-online.exe /yildiz-online/yildiz-online.exe
+COPY run.sh /run.sh
