@@ -12,11 +12,11 @@ WORKDIR /app
 COPY --from=clone /app/$REPO /app
 RUN mvn package -s settings.xml -Denv=win64
 
-FROM alpine
+FROM nginx
 MAINTAINER Grégory Van den Borre <vandenborre.gregory@hotmail.fr>
-WORKDIR /yildiz-online
-RUN mkdir /dist
-COPY --from=build /app/target/media/ /yildiz-online/media/
-COPY --from=build /app/target/game-client.jar /yildiz-online/game-client.jar
-COPY --from=build /app/target/yildiz-online.exe /yildiz-online/yildiz-online.exe
-COPY run.sh /run.sh
+COPY --from=build /app/target/media/ /usr/share/nginx/html
+COPY --from=build /app/target/game-client.jar /usr/share/nginx/html/game-client.jar
+COPY --from=build /app/target/yildiz-online.exe /usr/share/nginx/html/yildiz-online.exe
+RUN apt-get update \
+&& apt-get install -y -q curl
+HEALTHCHECK CMD curl --fail http://localhost:80 || exit 1
