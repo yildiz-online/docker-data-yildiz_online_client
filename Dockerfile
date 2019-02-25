@@ -5,7 +5,7 @@ ARG REPO
 WORKDIR /app
 RUN git clone https://$GH_TOKEN@github.com/yildiz-online/$REPO.git
 
-FROM moussavdb/build-java as build
+FROM moussavdb/build-java-dependencies as build
 MAINTAINER Grégory Van den Borre <vandenborre.gregory@hotmail.fr>
 ARG REPO
 WORKDIR /app
